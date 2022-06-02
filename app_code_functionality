@@ -1,0 +1,27 @@
+MVP =
+       -User can add tasks to the toDo list
+       -User can cross off completed tasks
+       -User can delete unwanted tasks
+
+
+Form will be built in html with an empty <ul> element where the tasks
+will be added in through javascript.
+
+
+
+   ENDPOINTS
+tasks will be sent to database as a post/put request
+
+tasks will be retrieved with a get request
+   ENDPOINTS
+
+tasks will be crossed off with a put request
+
+
+tasks will be deleted with a delete request
+
+
+
+   table will include
+            row for tasks
+            row to represent if the task has been crossed off.
