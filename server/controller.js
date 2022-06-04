@@ -11,7 +11,6 @@ const sequelize = new Sequelize(DATABASE_URL, {
   },
 });
 
-//
 const getAllTasks = (req, res) => {
   sequelize
     .query(
@@ -25,7 +24,6 @@ const getAllTasks = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-//
 const newTask = (req, res) => {
   const { task, completed } = req.body;
 
@@ -42,7 +40,6 @@ const newTask = (req, res) => {
     .catch((err) => console.log(err));
 };
 
-//
 const crossOffTask = async (req, res) => {
   const { id: task_id } = req.params;
 
@@ -63,7 +60,6 @@ const crossOffTask = async (req, res) => {
     .catch((err) => console.log(err));
 };
 
-//
 const deleteTask = async (req, res) => {
   const { id: task_id } = req.params;
   const [task] = await sequelize.query(

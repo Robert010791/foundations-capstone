@@ -66,16 +66,6 @@ button {
   background-color: white;
 }
 
-.delete {
-  border-radius: 50px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-
-.delete:hover {
-  background-color: red;
-}
-
 button:hover {
   transform: scale(1.1);
   background-color: rgb(194, 224, 174);
@@ -101,4 +91,13 @@ span {
 
 p:hover {
   color: rgb(62, 167, 228);
+}
+
+.delete {
+  border-radius: 50px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.delete:hover {
+  background-color: red;
 }
