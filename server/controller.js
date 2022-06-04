@@ -1,6 +1,3 @@
-const toDoTasks = require('./toDoListDB.json');
-let id = toDoTasks.length + 1;
-
 require('dotenv').config();
 const { CONNECTION_STRING } = process.env;
 const Sequelize = require('sequelize');
@@ -17,66 +14,81 @@ const sequelize = new Sequelize(CONNECTION_STRING, {
 //
 const getAllTasks = (req, res) => {
   sequelize
-    .query(`SELECT * FROM task_table`)
+    .query(
+      `SELECT * FROM task_table
+  ORDER BY task_id asc
+  `
+    )
     .then((dbResult) => {
-      console.log(dbResult);
-      res.status(200).send(dbResult);
+      res.status(200).send(dbResult[0]);
     })
     .catch((err) => console.log(err));
-
-  // res.status(200).send(toDoTasks);
 };
 
 //
 const newTask = (req, res) => {
   const { task, completed } = req.body;
 
-  const newTask = {
-    id,
-    task,
-    completed,
-  };
-  toDoTasks.push(newTask);
+  sequelize
+    .query(
+      `INSERT INTO task_table (task, completed)
+    VALUES ('${task}', '${completed}');
+    SELECT * FROM task_table
+  ORDER BY task_id asc
 
-  id++;
-
-  res.status(200).send(toDoTasks);
+   `
+    )
+    .then((dbResult) => res.status(200).send(dbResult[0]))
+    .catch((err) => console.log(err));
 };
 
 //
-const crossOffTask = (req, res) => {
-  const taskToBeCrossedOff = +req.params.id;
-  for (let i = 0; i < toDoTasks.length; i++) {
-    const completedTask = toDoTasks[i];
-    if (completedTask.id === taskToBeCrossedOff) {
-      if (completedTask.completed === false) {
-        completedTask.completed = true;
-      } else {
-        completedTask.completed = false;
-      }
-      return res.status(200).send(toDoTasks);
-    }
-  }
+const crossOffTask = async (req, res) => {
+  const { id: task_id } = req.params;
+
+  const [task] = await sequelize.query(
+    `SELECT completed FROM task_table WHERE task_id = ${+task_id}`
+  );
+
+  sequelize
+    .query(
+      `UPDATE task_table
+  SET completed = ${!task[0].completed}
+  WHERE task_id = ${+task_id};
+  SELECT * FROM task_table
+  ORDER BY task_id asc
+  `
+    )
+    .then((dbResult) => res.status(200).send(dbResult[0]))
+    .catch((err) => console.log(err));
 };
 
 //
-const deleteTask = (req, res) => {
-  const taskToBeDeleted = +req.params.id;
-  for (let i = 0; i < toDoTasks.length; i++) {
-    const taskItem = toDoTasks[i];
-    if (taskItem.id === taskToBeDeleted) {
-      toDoTasks.splice(i, 1);
-      return res.status(200).send(toDoTasks);
-    }
-  }
+const deleteTask = async (req, res) => {
+  const { id: task_id } = req.params;
+  const [task] = await sequelize.query(
+    `SELECT completed FROM task_table WHERE task_id = ${+task_id}`
+  );
+  sequelize
+    .query(
+      `DELETE FROM task_table
+  WHERE task_id = ${+task_id};
+  SELECT * FROM task_table
+  ORDER BY task_id asc
+  `
+    )
+    .then((dbResult) => res.status(200).send(dbResult[0]))
+    .catch((err) => console.log(err));
 };
 
-const placeHolderText = require('./placeHolder.json');
+const dbResult = require('./placeHolder.json');
 
 const getPlaceHolder = (req, res) => {
-  let randomIndex = Math.floor(Math.random() * placeHolderText.length);
-  let randomPlaceHolder = placeHolderText[randomIndex];
-  res.status(200).send(randomPlaceHolder);
+  sequelize.query(`SELECT text FROM placeholder_text`).then((dbResult) => {
+    let randomIndex = Math.floor(Math.random() * dbResult[0].length);
+    let randomPlaceHolder = dbResult[0][randomIndex];
+    res.status(200).send(randomPlaceHolder.text);
+  });
 };
 
 const exportsObject = {

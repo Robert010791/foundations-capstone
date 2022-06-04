@@ -30,6 +30,8 @@ li {
 
 .crossed-off {
   text-decoration: line-through;
+  text-decoration-thickness: 2px;
+  text-decoration-color: red;
 }
 
 span {
@@ -41,5 +43,5 @@ span {
 }
 
 p:hover {
-  color: red;
+  color: yellow;
 }

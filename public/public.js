@@ -59,14 +59,15 @@ const getNewTask = (e) => {
 //creates li element and appends it to ul element
 const createTaskCard = (list) => {
   const taskContainer = document.createElement('li');
+  console.log(list.task_id);
   if (list.completed) {
     taskContainer.innerHTML = `<span>
-  <p class="crossed-off" onclick="crossOffTask(${list.id})">${list.task}</p>
-   <button onclick="deleteTask(${list.id})">Delete</button> </span>`;
+  <p class="crossed-off" onclick="crossOffTask(${list.task_id})">${list.task}</p>
+   <button onclick="deleteTask(${list.task_id})">Delete</button> </span>`;
   } else {
     taskContainer.innerHTML = `<span>
-    <p onclick="crossOffTask(${list.id})">${list.task}</p>
-     <button onclick="deleteTask(${list.id})">Delete</button> </span>`;
+    <p onclick="crossOffTask(${list.task_id})">${list.task}</p>
+     <button onclick="deleteTask(${list.task_id})">Delete</button> </span>`;
   }
 
   taskList.appendChild(taskContainer);
@@ -82,11 +83,5 @@ const populateList = (lists) => {
 
 inputField.addEventListener('submit', getNewTask);
 
-//cross off function
-
 //Displays all tasks on load
 getAllTasks();
-
-// {
-//   /* <input onclick="crossOff()" type="checkbox"></input> */
-// }
