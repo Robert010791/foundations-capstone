@@ -75,6 +75,15 @@ button:active {
   transform: scale(1);
 }
 
+.delete {
+  border-radius: 50px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
+    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+.delete:hover {
+  background-color: red;
+}
+
 .crossed-off {
   text-decoration: line-through;
   text-decoration-thickness: 2px;
@@ -91,13 +100,4 @@ span {
 
 p:hover {
   color: rgb(62, 167, 228);
-}
-
-.delete {
-  border-radius: 50px;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande',
-    'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-.delete:hover {
-  background-color: red;
 }
