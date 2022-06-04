@@ -61,7 +61,7 @@ const createTaskCard = (list) => {
   if (list.completed) {
     taskContainer.innerHTML = `<span>
   <p class="crossed-off" onclick="crossOffTask(${list.task_id})">${list.task}</p>
-   <button onclick="deleteTask(${list.task_id})">Delete</button> </span>`;
+   <button onclick="deleteTask(${list.task_id})">X</button> </span>`;
   } else {
     taskContainer.innerHTML = `<span>
     <p onclick="crossOffTask(${list.task_id})">${list.task}</p>
