@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { SERVER_PORT } = process.env;
+const { PORT } = process.env;
 const express = require('express');
 const path = require('path');
 const app = express();
@@ -33,6 +33,4 @@ app.delete('/api/list/:id', deleteTask);
 //DEV
 app.post('/api/seed', seed);
 
-app.listen(SERVER_PORT, () =>
-  console.log(`Server is up and atom!! on port ${SERVER_PORT}`)
-);
+app.listen(PORT, () => console.log(`Server is up and atom!! on port ${PORT}`));

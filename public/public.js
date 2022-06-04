@@ -1,7 +1,7 @@
 const inputField = document.querySelector('form');
 const taskList = document.querySelector('ul');
 
-const baseURL = 'http://localhost:4554/api/list';
+const baseURL = '/api/list';
 
 const checkData = ({ data: list }) => {
   populateList(list);
@@ -30,11 +30,9 @@ const deleteTask = (id) => {
 };
 
 const getPlaceHolder = () => {
-  axios
-    .get('http://localhost:4554/api/list/placeholder')
-    .then(function (response) {
-      document.getElementsByName('task-input')[0].placeholder = response.data;
-    });
+  axios.get('/api/list/placeholder').then(function (response) {
+    document.getElementsByName('task-input')[0].placeholder = response.data;
+  });
 };
 
 //Handles new task input
