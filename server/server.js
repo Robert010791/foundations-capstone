@@ -1,8 +1,13 @@
 require('dotenv').config();
 const { SERVER_PORT } = process.env;
 const express = require('express');
+const path = require('path');
 const app = express();
 const cors = require('cors');
+
+const publicDir = path.join(__dirname, 'public');
+
+app.use(express.static(publicDir));
 
 const { seed } = require('./seed');
 const {
