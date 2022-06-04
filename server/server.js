@@ -5,9 +5,12 @@ const path = require('path');
 const app = express();
 const cors = require('cors');
 
-const publicDir = path.join(__dirname, 'public');
+const publicDir = path.join(__dirname, '../public');
 
 app.use(express.static(publicDir));
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '/index.html'));
+});
 
 const { seed } = require('./seed');
 const {
