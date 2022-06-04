@@ -67,7 +67,7 @@ const createTaskCard = (list) => {
   } else {
     taskContainer.innerHTML = `<span>
     <p onclick="crossOffTask(${list.task_id})">${list.task}</p>
-     <button onclick="deleteTask(${list.task_id})">Delete</button> </span>`;
+     <button class="delete" onclick="deleteTask(${list.task_id})">X</button> </span>`;
   }
 
   taskList.appendChild(taskContainer);

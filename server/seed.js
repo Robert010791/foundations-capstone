@@ -25,10 +25,10 @@ const seed = (req, res) => {
           );
 
             INSERT INTO task_table (task, completed)
-            VALUES ('Type task into text box', FALSE),
-            ('Click add button to add task to list', FALSE),
-            ('Click on task text to cross off task as completed',  FALSE),
-            ('Click on delete button to delete tasks', FALSE);
+            VALUES ('Demo Task:     Type task into text box', FALSE),
+            ('Demo Task:      Click add button to add task to list', FALSE),
+            ('Demo task:      Click on task text to cross off task as completed',  FALSE),
+            ('Demo Task:   Click on X button to delete tasks', FALSE);
             
         CREATE TABLE placeholder_text (
             placeholder_id SERIAL PRIMARY KEY,
