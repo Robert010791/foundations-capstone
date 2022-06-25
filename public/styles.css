@@ -103,4 +103,7 @@ p:hover {
 }
 
 @media (max-width: 480px) {
+  * {
+    width: 480px;
+  }
 }
